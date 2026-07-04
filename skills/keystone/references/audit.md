@@ -50,11 +50,13 @@ These ARE over-engineering:
 |-------|-----|
 | ESLint coverage | `eslint .` against the whole repo (no filters) |
 | CI exists | `Test-Path .github/ci.yml` (Win) or `test -f .github/ci.yml` (nix) |
-| Dead code | `codebase-memory_search_graph` with min_degree=0 |
-| Circular deps | `codegraph_explore "circular dependency"` |
+| Dead code / unused exports | `npx knip` (best single shot: unused exports, files, deps, test files). Fallback: `codebase-memory_search_graph` with min_degree=0 or `npx ts-prune`. |
+| Duplicated code (copy-paste) | `npx jscpd src/` (tokens mode, configurable threshold). |
+| Circular deps | `npx madge --circular src/` or `codegraph_explore "circular dependency"`. |
+| Missing / unused dependencies | `npx depcheck` (deps in package.json never imported, or used without being listed). |
 | Inline colors | Search for hex/rgb/hsl outside theme variables |
 | Inline styles | Search for inline style objects in JSX/TSX |
-| Coverage | `npx jest --coverage` or the project's test command |
+| Coverage | `npx jest --coverage` or the project's test command. For each uncovered line: check if it's dead code first before writing tests (see `harden`). |
 | Over-engineering | `codegraph_explore` for single-implementation abstractions, dead flags, hand-rolled stdlib. `search` for wrappers that only delegate. Apply sensitivity rules before reporting. |
 | Dead try-catch | Search for `try\s*\{` in source files. For each match, check if the try body contains any `throw`, `JSON.parse`, `fetch`, `await`, or async call. If none present, the catch block is dead code — remove it. |
 | Sensitivity | Read `AGENTS.md` for project conventions. Read `DESIGN.md` for architecture intent. Skip findings that match established patterns. |
