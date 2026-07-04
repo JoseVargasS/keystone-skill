@@ -1,4 +1,4 @@
-# Keystone
+# keystone
 
 Full-spectrum codebase hardening skill for any TypeScript, JavaScript, or Google Apps Script project.
 
@@ -7,10 +7,52 @@ Audits architecture, extracts modules from monoliths, enforces community coding 
 ## Install
 
 ```bash
-npx skills add josev/keystone-skill --skill keystone -g
+npx skills add JoseVargasS/keystone-skill --skill keystone -g
 ```
 
-Requires Node.js 18+. Install globally (`-g`) to make it available across all projects.
+### Source Formats
+
+```bash
+# GitHub shorthand
+npx skills add JoseVargasS/keystone-skill --skill keystone -g
+
+# Full GitHub URL
+npx skills add https://github.com/JoseVargasS/keystone-skill --skill keystone -g
+
+# Direct path to the skill
+npx skills add https://github.com/JoseVargasS/keystone-skill/tree/main/skills/keystone -g
+```
+
+### Options
+
+| Option                    | Description                                              |
+| ------------------------- | -------------------------------------------------------- |
+| `-g, --global`            | Install to user directory instead of project             |
+| `-a, --agent <agents...>` | Target specific agents (e.g., `claude-code`, `opencode`) |
+| `-s, --skill <skills...>` | Install specific skills by name                          |
+| `-l, --list`              | List available skills without installing                 |
+| `--copy`                  | Copy files instead of symlinking to agent directories    |
+| `-y, --yes`               | Skip all confirmation prompts                            |
+
+### Examples
+
+```bash
+# Install globally to all agents
+npx skills add JoseVargasS/keystone-skill --skill keystone -g -y
+
+# Install only to OpenCode and Claude Code
+npx skills add JoseVargasS/keystone-skill --skill keystone -a opencode -a claude-code -g
+
+# Install at project level (shared with team)
+npx skills add JoseVargasS/keystone-skill --skill keystone
+```
+
+### Installation Scope
+
+| Scope       | Flag      | Location                          | Use Case                                      |
+| ----------- | --------- | --------------------------------- | --------------------------------------------- |
+| **Project** | (default) | `./&lt;agent&gt;/skills/`         | Committed with your project, shared with team |
+| **Global**  | `-g`      | `~/&lt;agent&gt;/skills/`         | Available across all projects                 |
 
 ## Prerequisites (recommended)
 
