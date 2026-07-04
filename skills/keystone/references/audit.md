@@ -56,4 +56,5 @@ These ARE over-engineering:
 | Inline styles | Search for inline style objects in JSX/TSX |
 | Coverage | `npx jest --coverage` or the project's test command |
 | Over-engineering | `codegraph_explore` for single-implementation abstractions, dead flags, hand-rolled stdlib. `search` for wrappers that only delegate. Apply sensitivity rules before reporting. |
+| Dead try-catch | Search for `try\s*\{` in source files. For each match, check if the try body contains any `throw`, `JSON.parse`, `fetch`, `await`, or async call. If none present, the catch block is dead code — remove it. |
 | Sensitivity | Read `AGENTS.md` for project conventions. Read `DESIGN.md` for architecture intent. Skip findings that match established patterns. |

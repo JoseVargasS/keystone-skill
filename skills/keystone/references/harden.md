@@ -8,7 +8,10 @@ Add tests for files with low coverage. Target is a file or directory.
    - Read `TESTING.md` if it exists for framework, seams, expected coverage
    - Read `package.json` for test scripts
    - Run `npx jest --coverage --collectCoverageFrom="<target>"` (or equivalent)
-   - For each file in target, identify:
+   - For each uncovered line in the coverage report:
+     - **First check if the line is dead code**: an unreachable branch, a catch block whose try body has no throw/JSON.parse/fetch/await, a defensive `if` guard that can never be false (e.g., `Number.isFinite` on regex-captured digits). Read the source to confirm.
+     - If dead code: skip adding tests. Report the finding and offer to remove it.
+   - For surviving uncovered code, identify:
      - Exported functions without coverage
      - Uncovered branches (ifs, switches, early returns)
      - Edge cases (boundary values, errors, empty state)
