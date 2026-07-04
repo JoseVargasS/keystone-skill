@@ -34,6 +34,7 @@ Before any command:
 - **Never hardcode.** Read the codebase and replicate its patterns. Don't invent new structure without evidence.
 - **MCP before grep.** `codegraph_explore` + `codebase-memory_search_code` + `context7_query-docs` cover >90% of what you need before touching a file.
 - **Deletion > Addition.** Every line you don't delete is debt. Ask "does this need to exist?" before writing new code.
+- **Ladder before code.** Stdlib first, native platform second, already-installed dep third, one line fourth, minimum code last. A shortcut with a known ceiling is better than an abstraction "for later".
 - **CI never stays red.** After every incremental change: `tsc --noEmit` or `eslint .` or the project's verify command. Don't proceed with CI red.
 - **Purposeful comments.** On every function/module: what it does + where it's used + known edge cases. Never noise like `// loop` next to a `for`.
 - **Simplify tags.** Use `// ponytail: <reason, known ceiling, upgrade path>` when taking a deliberate shortcut.
@@ -51,7 +52,7 @@ Verify   → tsc --noEmit + eslint . + npm test + CI check. If anything fails, f
 
 | Command | Category | Description | Reference |
 |---|---|---|---|
-| `audit` | Evaluate | Full scan: missing docs, dead code, low coverage, circular deps, broken conventions, inline styles | [references/audit.md](references/audit.md) |
+| `audit` | Evaluate | Full scan: missing docs, dead code, low coverage, circular deps, broken conventions, inline styles, over-engineering patterns | [references/audit.md](references/audit.md) |
 | `scaffold` | Generate | Create AGENTS.md, CONTEXT.md, CONTRIBUTING.md, README.md, TESTING.md, .github/ci.yml with relevant content | [references/scaffold.md](references/scaffold.md) |
 | `extract <target>` | Refactor | Extract functions from a monolith into a hook/service/helper module | [references/extract.md](references/extract.md) |
 | `decouple <target>` | Refactor | Break circular dependencies between modules (ref bridge, mediator, DI) | [references/decouple.md](references/decouple.md) |
@@ -97,6 +98,7 @@ module.exports = {
 | **Types** | Strict mode in TS. `any` forbidden. Prefer `type` over `interface` for unions, `interface` for objects with methods. |
 | **Comments** | Explain *what it does* and *where it's used*. Don't explain *how* (the code reads itself). Edge cases and non-obvious decision reasons get comments. |
 | **Errors** | Try/catch on every async boundary. Classified errors (not generic `catch(e)`). Messages in the project's language. |
+| **Over-engineering** | Before adding a new abstraction, justify why stdlib/native/dep won't work. Flag: wrappers that only delegate, hand-rolled stdlib, config nobody sets, dead flags. Don't flag: documented interfaces, organized facades, project conventions. |
 
 ### Required documentation
 

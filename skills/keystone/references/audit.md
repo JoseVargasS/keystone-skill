@@ -29,6 +29,21 @@ Full project scan. If no target, scans everything.
    - Show the report path to the user and ask: "Which one should we tackle first?"
    - When the user picks, load the corresponding command (`scaffold`, `extract`, `conform`, etc.)
 
+## Sensitivity (over-engineering)
+
+Apply project conventions before flagging. These are NOT over-engineering:
+- Separate `.styles.ts` files when the project uses that convention
+- Facades over multi-file APIs (improves DX)
+- Interfaces documenting a public contract (even with one implementation)
+- Well-named wrappers that add error handling, logging, or type safety
+
+These ARE over-engineering:
+- Wrapper function that calls one other function with no added logic
+- Config flag/variable that never changes with no plan to
+- Abstract class with exactly one concrete subclass
+- Hand-rolled stdlib (e.g., date formatting when `Intl.DateTimeFormat` exists)
+- Dependency that the platform already provides
+
 ## Auto checks
 
 | Check | How |
@@ -40,3 +55,5 @@ Full project scan. If no target, scans everything.
 | Inline colors | Search for hex/rgb/hsl outside theme variables |
 | Inline styles | Search for inline style objects in JSX/TSX |
 | Coverage | `npx jest --coverage` or the project's test command |
+| Over-engineering | `codegraph_explore` for single-implementation abstractions, dead flags, hand-rolled stdlib. `search` for wrappers that only delegate. Apply sensitivity rules before reporting. |
+| Sensitivity | Read `AGENTS.md` for project conventions. Read `DESIGN.md` for architecture intent. Skip findings that match established patterns. |
