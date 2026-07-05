@@ -21,8 +21,8 @@ Full project scan. If no target, scans everything.
    - Prioritize by impact: blockers first, then warnings, then info
 
 3. **Execute**
-   - Write report to `$TEMP/keystone-audit-<timestamp>.html`
-   - Template: Tailwind via CDN, cards per category with severity badge
+   - Write report to `KEYSIGHT.md` in project root
+   - Format: markdown with severity headers per category
    - Each finding includes: location, problem, impact, proposed solution
 
 4. **Verify**

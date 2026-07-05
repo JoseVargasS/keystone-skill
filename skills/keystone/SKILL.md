@@ -1,7 +1,7 @@
 ---
 name: keystone
 description: Full-spectrum codebase hardening for any TypeScript, JavaScript, or GAS project. Audits architecture, extracts modules from monoliths, enforces community coding standards, generates missing docs and CI, annotates code with purpose comments, removes dead code, and raises test coverage. Uses codegraph, codebase-memory, and context7 MCP for dependency-aware code understanding before touching anything.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Keystone
